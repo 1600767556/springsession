@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<table>
+    <tr>
+        <td >序号</td>
+        <td>姓名</td>
+        <td>性别</td>
+        <td>电话</td>
+        <td>地址</td>
+        <td></td>
+    </tr>
+    <tr th:each="creditior:${creditiorList}">
+        <td th:text="${creditiorStat.count}">序号</td>
+        <td th:text="${creditior.realName}">姓名</td>
+        <td th:text="${creditior.sex==1?'男':'女'}">性别</td>
+        <td th:text="${creditior.phone}">电话</td>
+        <td th:text="${creditior.address}">地址</td>
+        <td>
+            <span th:if="${creditior.remoteFilePath == null || creditior.remoteFilePath==''}">
+            <a th:href="@{|/upload/${creditior.id}|}">上传</a>
+            </span>
+            <span th:if="${creditior.remoteFilePath != null && creditior.remoteFilePath != ''}">
+            <a th:href="@{|/download/${creditior.id}|}">下载</a>
+            <a th:href="@{|/delete/${creditior.id}|}">删除</a>
+          </span>
+
+        </td>
+    </tr>
+
+</table>
+</body>
+</html>
